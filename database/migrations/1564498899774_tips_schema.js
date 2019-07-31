@@ -8,6 +8,7 @@ class TipsSchema extends Schema {
     this.create('tips', (table) => {
       table.increments()
       table.string('name', 100).notNullable()
+      table.string('description',150)
       table.timestamps()
     })
   }
