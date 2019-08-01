@@ -4,6 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 const Actualite = use('App/Models/Actualite')
+const Database = use('Database')
 /**
  * Resourceful controller for interacting with actualites
  */
@@ -65,6 +66,12 @@ class ActualiteController {
     }
 
     return response.json({data: res})
+  }
+
+  async images ({params, request, response}){
+    const images = await Database.from('actualites').where('photo', params.img)
+
+    return response.json(images)
   }
 
   /**

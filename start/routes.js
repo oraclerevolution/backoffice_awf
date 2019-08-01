@@ -29,6 +29,7 @@ Route.get('/theques/:id', 'ThequeController.show')
 Route.post('/newTips', 'TipController.create')
 Route.get('/allTips', 'TipController.index')
 Route.get('tips/:id', 'TipController.show')
+Route.get('/images/:img', 'ActualiteController.images')
 
 Route.post('/login', 'AuthController.login')
 Route.post('/register', 'AuthController.register')
