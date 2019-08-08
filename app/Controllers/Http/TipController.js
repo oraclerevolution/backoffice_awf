@@ -21,7 +21,7 @@ class TipController {
    */
   async index ({ request, response, view }) {
     const tips = await Database.from('tips')
-    return response.json({tips: tips})
+    return response.json({data:{tips:tips}})
   }
 
   /**
