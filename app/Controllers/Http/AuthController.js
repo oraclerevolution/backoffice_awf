@@ -32,7 +32,7 @@ class AuthController {
       password: request.input('password'),
     })
 
-    return response.json(user)
+    return response.json({data: {user: user, status: 0}})
   }
 
 }
