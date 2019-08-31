@@ -3,16 +3,14 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-const Tip = use('App/Models/Tip')
-const {validate} = use('Validator')
-const Database = use('Database')
+const Thematique = use('App/Models/Thematique')
 /**
- * Resourceful controller for interacting with tips
+ * Resourceful controller for interacting with thematiques
  */
-class TipController {
+class ThematiqueController {
   /**
-   * Show a list of all tips.
-   * GET tips
+   * Show a list of all thematiques.
+   * GET thematiques
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -20,13 +18,13 @@ class TipController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const tips = await Database.from('tips')
-    return response.json({data: {tips: tips, status: 'ok'}})
+    const thematiques = await Thematique.all()
+    return response.json({data: thematiques})
   }
 
   /**
-   * Render a form to be used for creating a new tip.
-   * GET tips/create
+   * Render a form to be used for creating a new thematique.
+   * GET thematiques/create
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -34,26 +32,11 @@ class TipController {
    * @param {View} ctx.view
    */
   async create ({ request, response, view }) {
-    //validate form inputs
-    const validation = await validate(request.all(), {
-      name:'required|max:50',
-    })
-
-    if(validation.fails()){
-      session.withErrors(validation.messages()).flashAll()
-    }
-    
-    //create user
-    const tip = await Tip.create({
-      name: request.input('name'),
-    })
-
-    return response.json({data: {status: 'ok'}})
   }
 
   /**
-   * Create/save a new tip.
-   * POST tips
+   * Create/save a new thematique.
+   * POST thematiques
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -63,8 +46,8 @@ class TipController {
   }
 
   /**
-   * Display a single tip.
-   * GET tips/:id
+   * Display a single thematique.
+   * GET thematiques/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -72,13 +55,11 @@ class TipController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-    const tips_item = await Database.from('tips_items').where('tips_id', params.id)
-    return response.json({data: {items: tips_item, status: 'ok'}})
   }
 
   /**
-   * Render a form to update an existing tip.
-   * GET tips/:id/edit
+   * Render a form to update an existing thematique.
+   * GET thematiques/:id/edit
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -89,8 +70,8 @@ class TipController {
   }
 
   /**
-   * Update tip details.
-   * PUT or PATCH tips/:id
+   * Update thematique details.
+   * PUT or PATCH thematiques/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -100,8 +81,8 @@ class TipController {
   }
 
   /**
-   * Delete a tip with id.
-   * DELETE tips/:id
+   * Delete a thematique with id.
+   * DELETE thematiques/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -111,4 +92,4 @@ class TipController {
   }
 }
 
-module.exports = TipController
+module.exports = ThematiqueController
