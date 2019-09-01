@@ -24,7 +24,7 @@ Route.get('/article/:id', 'ActualiteController.show')
 Route.get('/speakers', 'SpeakerController.index')
 Route.get('/commentaires/:id', 'CommentaireController.index')
 Route.get('/images/:img', 'ActualiteController.images')
-Route.get('/thematiques', 'ThematiqueController.index')
+Route.get('/thems', 'ThematiqueController.index')
 
 Route.post('/login', 'AuthController.login')
 Route.post('/register', 'AuthController.register')
