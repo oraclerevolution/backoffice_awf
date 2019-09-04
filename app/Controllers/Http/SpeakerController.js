@@ -4,6 +4,8 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 const Speaker = use('App/Models/Speaker')
+const Database = use('Database')
+
 /**
  * Resourceful controller for interacting with speakers
  */
@@ -55,6 +57,18 @@ class SpeakerController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+    const speaker = await Speaker.find(params.id)
+    
+    const res = {
+      id: speaker.id,
+      name: speaker.name,
+      fonction: speaker.fonction,
+      biographie: speaker.biographie,
+      photo: speaker.photo
+    }
+
+    return response.json({res})
+
   }
 
   /**
