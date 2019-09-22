@@ -46,6 +46,7 @@ class ReseauController {
     const validation = await validate(request.all(), {
       name: 'required|max:50',
       email: 'required|unique:users,email',
+      type:'required',
       sujet: 'required|max:100',
       message: 'required'
     })
@@ -58,11 +59,12 @@ class ReseauController {
 
     reseau.name = request.input('name');
     reseau.email = request.input('email');
+    reseau.type = request.input('type');
     reseau.sujet = request.input('sujet');
     reseau.message = request.input('message');
 
     await reseau.save();
-    return response.json(reseau)
+    return response.json({data:{response: reseau, status: 'ok'}})
   }
 
   /**
