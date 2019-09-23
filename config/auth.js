@@ -31,7 +31,7 @@ module.exports = {
     serializer: 'lucid',
     model: 'App/Models/User',
     scheme: 'session',
-    uid: 'numero',
+    uid: 'email',
     password: 'password'
   },
 
@@ -52,7 +52,7 @@ module.exports = {
     serializer: 'lucid',
     model: 'App/Models/User',
     scheme: 'basic',
-    uid: 'numero',
+    uid: 'email',
     password: 'password'
   },
 
