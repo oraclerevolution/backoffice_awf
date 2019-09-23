@@ -6,9 +6,9 @@ const User = use('App/Models/User')
 class AuthController {
 
   async login({ request, response, auth}){
-    const {numero, password} = request.only(['numero', 'password'])
+    const {email, password} = request.only(['email', 'password'])
 
-    const token = await auth.attempt(numero, password)
+    const token = await auth.attempt(email, password)
     return response.json(token)
     
   }
@@ -18,7 +18,7 @@ class AuthController {
     //validate form inputs
     const validation = await validate(request.all(), {
       username:'required',
-      numero: 'required|unique:users,numero',
+      email: 'required|unique:users,',
       password: 'required'
     })
 
@@ -28,7 +28,7 @@ class AuthController {
     //create user
     const user = await User.create({
       username: request.input('username'),
-      numero: request.input('numero'),
+      email: request.input('email'),
       password: request.input('password'),
     })
 
